@@ -1,4 +1,4 @@
-const WorkspaceThumbnail = imports.misc.extensionUtils.getCurrentExtension().imports.src.WorkspaceThumbnail.WorkspaceThumbnail;
+const WorkspaceThumbnail = imports.ui.workspaceThumbnail.WorkspaceThumbnail;
 
 const { Clutter, Gio, GLib, GObject, Graphene, Meta, Shell, St } = imports.gi;
 
@@ -15,10 +15,8 @@ var MAX_THUMBNAIL_SCALE = 0.05;
 
 var MUTTER_SCHEMA = 'org.gnome.mutter';
 
-var ThumbnailsBox = GObject.registerClass({
-    Properties: {
-    },
-}, class ThumbnailsBox extends St.Widget {
+var ThumbnailsBox = GObject.registerClass(
+    class ThumbnailsBox extends St.Widget {
     _init(monitorIndex) {
         super._init({
             style_class: 'cheese-workspace-thumbnails',
