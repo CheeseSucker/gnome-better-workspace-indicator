@@ -18,23 +18,25 @@
 
 /* exported init */
 
-const ThumbnailsBox = imports.misc.extensionUtils.getCurrentExtension().imports.src.ThumbnailsBox.ThumbnailsBox
-
-
 const { GObject, St, Clutter } = imports.gi;
-
 const Main = imports.ui.main;
+
 const PanelMenu = imports.ui.panelMenu;
 
-let Indicator = GObject.registerClass(
-class Indicator extends PanelMenu.Button {
-    _init() {
-        super._init(0.0, _('Workspace Preview'));
+const ThumbnailsBox = imports.misc.extensionUtils.getCurrentExtension().imports.src.ThumbnailsBox.ThumbnailsBox;
+
+class Container extends PanelMenu.Button {
+    static {
+        GObject.registerClass(this);
+    }
+
+    constructor() {
+        super(0.0, _('My Shiny Container'));
 
         this._thumbnailsBox = new ThumbnailsBox(Main.layoutManager.primaryIndex);
         this.add_actor(this._thumbnailsBox);
     }
-});
+}
 
 class Extension {
     constructor(uuid) {
@@ -42,13 +44,13 @@ class Extension {
     }
 
     enable() {
-        this._indicator =  new Indicator();
-        Main.panel.addToStatusArea(this._uuid, this._indicator);
+        this._container = new Container();
+        Main.panel.addToStatusArea(this._uuid, this._container);
     }
 
     disable() {
-        this._indicator.destroy();
-        this._indicator = null;
+        this._container.destroy();
+        this._container = null;
     }
 }
 
