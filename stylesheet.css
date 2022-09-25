@@ -1,0 +1,10 @@
+/* Add your custom extension styling here */
+.cheese-workspace-thumbnails .workspace-thumbnail {
+    /*@extend %overview_panel; */
+    border-radius: 3px;
+}
+
+.cheese-workspace-thumbnails {
+    spacing: 5px;
+    margin: 3px 0;
+}
