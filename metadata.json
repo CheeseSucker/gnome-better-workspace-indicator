@@ -1,7 +1,7 @@
 {
   "name": "Workspace Previews",
   "description": "Shows workspace previews in top bar",
-  "uuid": "gnome-workspace-previes@cheesesucker.github.com",
+  "uuid": "workspace-preview@cheesesucker.github.com",
   "shell-version": [
     "42"
   ]

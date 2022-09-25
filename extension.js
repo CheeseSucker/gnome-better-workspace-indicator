@@ -21,20 +21,15 @@
 const ThumbnailsBox = imports.misc.extensionUtils.getCurrentExtension().imports.src.ThumbnailsBox.ThumbnailsBox
 
 
-const GETTEXT_DOMAIN = 'my-indicator-extension';
-
 const { GObject, St, Clutter } = imports.gi;
 
-const ExtensionUtils = imports.misc.extensionUtils;
 const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
-
-const _ = ExtensionUtils.gettext;
 
 let Indicator = GObject.registerClass(
 class Indicator extends PanelMenu.Button {
     _init() {
-        super._init(0.0, _('My Shiny Indicator 2'));
+        super._init(0.0, _('Workspace Preview'));
 
         this._thumbnailsBox = new ThumbnailsBox(Main.layoutManager.primaryIndex);
         this.add_actor(this._thumbnailsBox);
@@ -44,8 +39,6 @@ class Indicator extends PanelMenu.Button {
 class Extension {
     constructor(uuid) {
         this._uuid = uuid;
-
-        ExtensionUtils.initTranslations(GETTEXT_DOMAIN);
     }
 
     enable() {
