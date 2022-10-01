@@ -1,10 +1,7 @@
-const WorkspaceThumbnail = imports.ui.workspaceThumbnail.WorkspaceThumbnail;
+//const WorkspaceThumbnail = imports.ui.workspaceThumbnail.WorkspaceThumbnail;
+const WorkspaceThumbnail = imports.misc.extensionUtils.getCurrentExtension().imports.src.WorkspaceThumbnail.WorkspaceThumbnail.WorkspaceThumbnail;
 
-const { Clutter, GObject, Graphene, Meta, St } = imports.gi;
-
-const Main = imports.ui.main;
-const { TransientSignalHolder } = imports.misc.signalTracker;
-const Workspace = imports.ui.workspace;
+const { Clutter, GObject, St } = imports.gi;
 
 // The maximum size of a thumbnail is 5% the width and height of the screen
 var MAX_THUMBNAIL_SCALE = 0.05;
@@ -21,10 +18,10 @@ var Thumbnail = class _ThumbnailsBox extends St.Widget {
     }
 
     getActive() { return this._active; }
-    
-    setActive(active) { 
-        this._active = active; 
-        this._indicator.visible = this._active; 
+
+    setActive(active) {
+        this._active = active;
+        this._indicator.visible = this._active;
     }
 
     constructor(metaWorkspace, porthole, monitorIndex) {

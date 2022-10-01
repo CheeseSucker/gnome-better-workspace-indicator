@@ -1,8 +1,7 @@
-const { Clutter, GObject, Graphene, Meta, St } = imports.gi;
+const { Clutter, GObject, Meta, St } = imports.gi;
 
 const Main = imports.ui.main;
 const { TransientSignalHolder } = imports.misc.signalTracker;
-const Workspace = imports.ui.workspace;
 
 const Thumbnail = imports.misc.extensionUtils.getCurrentExtension().imports.src.Thumbnail.Thumbnail;
 
@@ -32,7 +31,7 @@ var ThumbnailsBox = GObject.registerClass(
                 this._updatePorthole();
                 this._rebuildThumbnails();
                 this.queue_relayout();
-            }, 
+            },
             this
         );
 
@@ -110,7 +109,7 @@ var ThumbnailsBox = GObject.registerClass(
             }
 
             //thumbnail.connect('scroll-event', this._onScrollEvent.bind(this));
-            
+
             this._thumbnails.push(thumbnail);
             this.add_actor(thumbnail);
         }
