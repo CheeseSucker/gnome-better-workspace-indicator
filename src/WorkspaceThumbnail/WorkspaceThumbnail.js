@@ -3,6 +3,7 @@ const { Clutter, GLib, GObject, Graphene, St } = imports.gi;
 const DND = imports.ui.dnd;
 const Main = imports.ui.main;
 const Util = imports.misc.util;
+const BackgroundManager = imports.ui.background.BackgroundManager;
 
 const WindowClone = imports.misc.extensionUtils.getCurrentExtension().imports.src.WorkspaceThumbnail.WindowClone.WindowClone;
 
@@ -87,6 +88,12 @@ var WorkspaceThumbnail = GObject.registerClass({
         this.state = ThumbnailState.NORMAL;
         this._slidePosition = 0; // Fully slid in
         this._collapseFraction = 0; // Not collapsed
+
+        this._bgManager = new BackgroundManager({
+            monitorIndex: monitorIndex,
+            container: this._contents,
+            vignette: false
+        });
     }
 
     setPorthole(x, y, width, height) {
@@ -245,6 +252,11 @@ var WorkspaceThumbnail = GObject.registerClass({
     _onDestroy() {
         this.workspaceRemoved();
         this._windows = [];
+
+        if (this._bgManager) {
+            this._bgManager.destroy();
+            this._bgManager = null;
+        }
     }
 
     // Tests if @actor belongs to this workspace and monitor
